@@ -1,4 +1,5 @@
 let libraryList =[];
+const library = document.getElementById("libraryContainer");
 
 function Book(title, author, pages, read = false){
     this.title = title;
@@ -19,36 +20,42 @@ function addBookToLibrary(title, author, pages, read = false) {
     libraryList.push(book);
 }
 
-function showBooks(){
-    const library = document.getElementById("libraryContainer");
+function refreshView(){
     library.innerHTML = '';
     for (let i = 0; i < libraryList.length; i++){
-        let readText;
-        libraryList[i].read ? readText = 'Read' : readText = 'Unread';
-        const bookCard = document.createElement('div');
-        bookCard.innerHTML = `<div class="bTitle">Title: ${libraryList[i].title}</div>
-        <div class="bAuthor">Author: ${libraryList[i].author}</div>
-        <div class="bPages">Pages: ${libraryList[i].pages}</div>
-        <button class="bRead" id="read${i}">${readText}</button>
-        <button class="bDelete" id="delete${i}">Delete</button>`;
-        bookCard.classList.add("book");
-        bookCard.id = 'book' + i;
-        library.appendChild(bookCard);
-    }
-    for (let i = 0; i < libraryList.length; i++){
-        let deleteButton = document.getElementById(`delete${i}`);
-        deleteButton.addEventListener('click', () => {
-            libraryList.splice(i, 1);
-            showBooks();
-        });
-        let readButton = document.getElementById(`read${i}`);
-        readButton.addEventListener('click', () => {
-            libraryList[i].read = !libraryList[i].read;
-            showBooks();
-        });
+        showBook(i);
+        let n = document.getElementById('book' + i);
+        n.style.display = 'grid';
     }
 
 }
+
+function showBook(index){
+    let readText;
+    libraryList[index].read ? readText = 'Read' : readText = 'Unread';
+    const bookCard = document.createElement('div');
+    bookCard.innerHTML = `<div class="bTitle">Title: ${libraryList[index].title}</div>
+    <div class="bAuthor">Author: ${libraryList[index].author}</div>
+    <div class="bPages">Pages: ${libraryList[index].pages}</div>
+    <button class="bRead" id="read${index}">${readText}</button>
+    <button class="bDelete" id="delete${index}">Delete</button>`;
+    bookCard.classList.add("book");
+    bookCard.id = 'book' + index;
+    library.appendChild(bookCard);
+
+    let deleteButton = document.getElementById(`delete${index}`);
+    deleteButton.addEventListener('click', () => {
+        libraryList.splice(index, 1);
+        refreshView();
+    });
+    let readButton = document.getElementById(`read${index}`);
+    readButton.addEventListener('click', () => {
+        libraryList[index].read = !libraryList[index].read;
+        let readBtnTemp = document.getElementById(`read${index}`);
+        libraryList[index].read ? readBtnTemp.innerHTML = 'Read' : readBtnTemp.innerHTML = 'Unread';
+    });
+}
+
 
 const  newButton = document.getElementById("newBook");
 const  newTitle = document.getElementById("newTitle");
@@ -58,7 +65,31 @@ const  newRead = document.getElementById("newRead");
 
 newButton.addEventListener('click', addBookClick);
 
+const  searchButton = document.getElementById("searchBook");
+const  searchTitle = document.getElementById("searchTitle");
+const  searchAuthor = document.getElementById("searchAuthor");
+
 function addBookClick(){
     addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, newRead.checked);
-    showBooks();
+    showBook(libraryList.length-1);
 }
+
+searchButton.addEventListener('click', searchBooks);
+
+function searchBooks(){
+    for (let i = 0; i < libraryList.length; i++){
+        let n = document.getElementById('book' + i);
+        if (libraryList[i].author.includes(searchAuthor.value) && libraryList[i].title.includes(searchTitle.value)){
+            n.style.display = 'grid';
+        } else {
+            n.style.display = 'none';
+        }
+    }
+}
+
+function populateLibrary(){
+    addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', 323, true);
+    refreshView();
+}
+
+populateLibrary();
