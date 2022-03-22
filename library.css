@@ -7,6 +7,25 @@ body {
     padding: 0px;
 }
 
+
+
+button {
+    font-size: 1.2rem;
+	cursor: pointer;
+    border: none;
+    color: rgb(180, 120, 0);
+    font-weight: bold;
+    background-color: rgb(50, 50, 50);
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(65, 65, 65);
+    box-shadow: 1px 1px 2px rgb(20, 20, 20);
+}
+
+button:hover {
+    color: lightgray;
+}
+
 #topContainer{
     display: grid;
     grid-template-rows: 100px 1fr;
@@ -51,8 +70,16 @@ body {
     grid-template-rows: 5fr;
     grid-template-columns: 1fr;
     justify-items: left;
-    align-items: start;
     gap: 12px;
+}
+
+#formBox input[type='checkbox']{
+    margin-left: 75px;
+    margin-top: 5px;
+}
+
+#formBox button, #searchBox button {
+    margin-top: 5px;
 }
 
 #searchBox{
@@ -75,7 +102,7 @@ body {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-template-rows: repeat(auto-fit, 200px);
     background-color: rgb(100, 100, 100);
     gap: 15px;
@@ -89,12 +116,12 @@ body {
     border: 2px solid orange;
     color: lightgrey;
     border-radius: 5px;
-    min-width: 350px;
+    min-width: 400px;
     min-height: 200px;
     background-color: rgb(20, 20, 20);
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 18fr 11fr 11fr;
+    grid-template-columns: 1.5fr 1fr 1fr;
     justify-items: start;
     align-items: center;
     padding: 10px;
@@ -106,7 +133,7 @@ body {
 }
 
 .book > button {
-    width: 80px;
+    width: 110px;
 }
 
 .book > * {
