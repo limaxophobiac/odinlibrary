@@ -70,13 +70,21 @@ const  searchTitle = document.getElementById("searchTitle");
 const  searchAuthor = document.getElementById("searchAuthor");
 
 function addBookClick(){
-    addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, newRead.checked);
-    showBook(libraryList.length-1);
+    const pageTest = new RegExp('^[0-9]+$');
+    if (pageTest.test(newPages.value) && newAuthor.value !== '' && newTitle.value !== ''){
+        addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, newRead.checked);
+        showBook(libraryList.length-1);
+        newPages.value= '';
+        newAuthor.value = '';
+        newTitle.value = '';
+        newRead.checked = false;
+    }
 }
 
 searchButton.addEventListener('click', searchBooks);
 
 function searchBooks(){
+    
     for (let i = 0; i < libraryList.length; i++){
         let n = document.getElementById('book' + i);
         if (libraryList[i].author.toLowerCase().includes(searchAuthor.value.toLowerCase()) && libraryList[i].title.toLowerCase().includes(searchTitle.value.toLowerCase())){
