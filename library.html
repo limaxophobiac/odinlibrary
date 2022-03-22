@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+    <div id="topContainer">
+    
+        <div id="header">
+            <p>Welcome to the Library</p>
+        </div>
+       
+        <div id="leftbar">
+            <div id="formBox">
+                <label for="newTitle">Title:<br><input type="text" name="Title" id="newTitle"></label>
+                <label for="newAuthor">Author:<br><input type="text" name="Autor" id="newAuthor"></label>
+                <label for="newPages">Page Count:<br><input type="text" name="Pages" id="newPages"></label>
+                <label for="newRead">Have you read it?<input type='checkbox' id="newRead"></label>
+                <button id="newBook">Add Book</button>
+            </div>
+            <div id="searchBox">
+                <label for="seachTitle">Title:<br><input type="text" name="Title" id="searchTitle"></label>
+                <label for="searchAuthor">Author:<br><input type="text" name="Autor" id="searchAuthor"></label>
+                <button id="searchBook">Search</button>
+            </div>
+        </div>
+       
+        <div id="libraryContainer">
+
+        </div>
+    
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
