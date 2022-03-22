@@ -79,7 +79,7 @@ searchButton.addEventListener('click', searchBooks);
 function searchBooks(){
     for (let i = 0; i < libraryList.length; i++){
         let n = document.getElementById('book' + i);
-        if (libraryList[i].author.includes(searchAuthor.value) && libraryList[i].title.includes(searchTitle.value)){
+        if (libraryList[i].author.toLowerCase().includes(searchAuthor.value.toLowerCase()) && libraryList[i].title.toLowerCase().includes(searchTitle.value.toLowerCase())){
             n.style.display = 'grid';
         } else {
             n.style.display = 'none';
@@ -88,7 +88,24 @@ function searchBooks(){
 }
 
 function populateLibrary(){
-    addBookToLibrary('Lord of the Rings', 'J.R.R. Tolkien', 323, true);
+    addBookToLibrary('The Fellowship of the Ring', 'J.R.R. Tolkien', 423, true);
+    addBookToLibrary('The Two Towers', 'J.R.R. Tolkien', 352, true);
+    addBookToLibrary('The Return of the King', 'J.R.R. Tolkien', 416, true);
+    addBookToLibrary('The Silmarillion', 'J.R.R. Tolkien', 365, true);
+    addBookToLibrary('Dune', 'Frank Herbert', 412, true);
+    addBookToLibrary('Dune Messiah', 'Frank Herbert', 256, true);
+    addBookToLibrary('Children of Dune', 'Frank Herbert', 444, true);
+    addBookToLibrary('The Colour of Magic', 'Terry Pratchett', 300, true);
+    addBookToLibrary('The Light Fantastic', 'Terry Pratchett', 300, true);
+    addBookToLibrary('Equal Rites', 'Terry Pratchett', 300, true);
+    addBookToLibrary('Mort', 'Terry Pratchett', 300, true);
+    addBookToLibrary('Sourcery', 'Terry Pratchett', 300, true);
+    addBookToLibrary('Wyrd Sisters', 'Terry Pratchett', 300, false);
+    addBookToLibrary('Pyramids', 'Terry Pratchett', 300, false);
+    addBookToLibrary('Guards! Guards!', 'Terry Pratchett', 300, true);
+    addBookToLibrary('Notes from Underground', 'Fyodor Dostoevsky', 120, true);
+    addBookToLibrary('Crime and Punishment', 'Fyodor Dostoevsky', 500, false);
+    addBookToLibrary('The Brothers Karamazov', 'Fyodor Dostoevsky', 500, true);
     refreshView();
 }
 
